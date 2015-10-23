@@ -1,6 +1,6 @@
 package fr.istic.aoc.model;
 
-import fr.istis.aoc.command.Command;
+import fr.istic.aoc.command.Command;
 
 public class Moteur {
 	

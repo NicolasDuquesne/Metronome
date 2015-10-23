@@ -1,5 +1,6 @@
-package fr.istic.aoc.command;
+package fr.istic.aoc.command.impl;
 
+import fr.istic.aoc.command.Command;
 
 /**
  * Implémente la commande UpdateBPM
@@ -7,9 +8,9 @@ package fr.istic.aoc.command;
  */
 public class UpdateBPM implements Command{
 
-	private Moteur moteur;
+	private MoteurImpl moteur;
 	    
-	public UpdateBPM(Moteur m) {
+	public UpdateBPM(MoteurImpl m) {
         moteur = m;
     }
 	    

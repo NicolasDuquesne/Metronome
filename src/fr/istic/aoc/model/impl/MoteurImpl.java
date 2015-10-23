@@ -2,6 +2,8 @@ package fr.istic.aoc.model.impl;
 
 import fr.istic.aoc.model.Moteur;
 import fr.istic.aoc.command.Command;
+import fr.istic.aoc.command.impl.UpdateBPM;
+import fr.istic.aoc.enumeration.Evenement;
 
 public class MoteurImpl implements Moteur{
 	
@@ -37,22 +39,12 @@ public class MoteurImpl implements Moteur{
 		this.measure = measure;
 	}
 
-
-
-	// Références vers les commandes
-    private Command updateBPM;
-    
-   
-	// Méthodes pour invoquer les commandes
-    public void invokeUpdateBPM() {
-        if(updateBPM != null) {
-            updateBPM.execute();
+	// Méthode lançant la bonne commande execute() appelé par le controller
+    public void setCmd(Evenement evt, Command ctlCmd) {
+        if(evt.equals(Evenement.UpdateBPM)){
+        	UpdateBPM updateBpm = (UpdateBPM) ctlCmd;
+        	updateBpm.execute();
         }
-    }
-    
-    // Méthodes pour fixer les commandes
-    public void setUpdateBPM(Command newUpdateBPM) {
-        updateBPM = newUpdateBPM;
     }
     
 

@@ -1,6 +1,7 @@
 package fr.istic.aoc.command.impl;
 
 import fr.istic.aoc.command.Command;
+import fr.istic.aoc.model.impl.MoteurImpl;
 
 /**
  * Implémente la commande UpdateBPM

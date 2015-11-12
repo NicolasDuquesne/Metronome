@@ -15,4 +15,8 @@ public interface Controller {
 	void onModifyBPM();
 	
 	void displayBPM(int piValue);
+	
+	void displayBip();
+	
+	void displayMesure();
 }

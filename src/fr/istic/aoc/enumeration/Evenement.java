@@ -5,5 +5,5 @@ package fr.istic.aoc.enumeration;
  *
  */
 public enum Evenement {
-	UpdateBPM, IncreaseMeasure, DecreaseMeasure;
+	UpdateBPM, IncreaseMeasure, DecreaseMeasure, StartClock, StopClock;
 }

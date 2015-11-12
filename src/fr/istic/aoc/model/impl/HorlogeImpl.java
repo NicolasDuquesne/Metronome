@@ -10,7 +10,6 @@ public class HorlogeImpl implements Horloge{
 	
 	//déclaration du ScheduledExecutorService avec un démarrage au bout d'une seconde
 	ScheduledExecutorService s = Executors.newScheduledThreadPool(1);
-
 	
 	public void start(float timeBPM){				
 

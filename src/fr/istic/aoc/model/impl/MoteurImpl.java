@@ -43,6 +43,7 @@ public class MoteurImpl implements Moteur{
     public void setCmd(Evenement evt, Command ctlCmd) {
         if(evt.equals(Evenement.UpdateBPM)){
         	UpdateBPM updateBpm = (UpdateBPM) ctlCmd;
+        	updateBpm.setBpm(this.bpm);
         	updateBpm.execute();
         }
     }

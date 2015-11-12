@@ -27,7 +27,7 @@ public class UpdateMeasure implements Command{
 	}
 	
 	public void execute() {
-		//horloge.methode configurant la fréquence des bips
+		//Met à jour la mesure dans le Controller avec le 
 	}
 
 }

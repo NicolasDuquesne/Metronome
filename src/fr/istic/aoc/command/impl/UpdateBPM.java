@@ -27,7 +27,12 @@ public class UpdateBPM implements Command{
 	}
 	
 	public void execute() {
-		//horloge.methode configurant la fréquence des bips
+		//calcul le temps par rapport au BPM
+		float timeBPM;
+		timeBPM = 60/this.bpm;
+		
+		//Appel méthode start de l'horloge pour executer les bips par rapport au temps
+		horloge.start(timeBPM);
 	}
 
 }

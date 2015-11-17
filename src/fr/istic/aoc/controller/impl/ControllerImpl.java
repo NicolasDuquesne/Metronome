@@ -5,6 +5,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import fr.istic.aoc.command.impl.StartClock;
+import fr.istic.aoc.command.impl.StopClock;
+import fr.istic.aoc.command.impl.UpdateBPM;
 import fr.istic.aoc.controller.*;
 import fr.istic.aoc.enumeration.Evenement;
 import fr.istic.aoc.model.impl.MoteurImpl;
@@ -18,6 +20,7 @@ public class ControllerImpl implements Controller{
 	
 	private static final String LIGHT_BPM = "LIGHT_BPM";
 	private static final String LIGHT_MESURE = "LIGHT_MESURE";
+	private static final int DEFAULT_BPM = 120;
 	
 	@FXML
 	private Slider poSliderBPM;
@@ -33,37 +36,47 @@ public class ControllerImpl implements Controller{
 	
 	private int miCountBip = 0;
 	
-	private int miMesure = 0;
+	private int miMesure = 2;
 	
 	public ControllerImpl() {
 		
 	}
 
 	public void onClickInc(ActionEvent poEvent) {
-		miMesure++;
+		if (miMesure < 7) {
+			miMesure++;
+		}
 	}
 
 	public void onClickDec(ActionEvent poEvent) {
-		miMesure--;
+		if (miMesure > 2) {
+			miMesure--;
+		}
 	}
 	
 	public void onClickStart(ActionEvent poEvent) {
 		MoteurImpl oMoteur = new MoteurImpl();
-		StartClock oCmdStart = new StartClock();
+		StartClock oCmdStart = new StartClock(this);
+		oCmdStart.setMiInitBPM(DEFAULT_BPM);
 		oMoteur.setCmd(Evenement.StartClock, oCmdStart);
 	}
 	
 	public void onClickStop(ActionEvent poEvent) {
-		
+		MoteurImpl oMoteur = new MoteurImpl();
+		StopClock oCmdStop = new StopClock();
+		oMoteur.setCmd(Evenement.StopClock, oCmdStop);
 	}
 	
 	public void onModifyBPM() {
-		displayBPM(this.poSliderBPM.valueProperty().intValue());
+		MoteurImpl oMoteur = new MoteurImpl();
+		UpdateBPM oCmdUpd = new UpdateBPM(this);
+		oMoteur.setBpm(this.poSliderBPM.valueProperty().intValue());
+		oMoteur.setCmd(Evenement.UpdateBPM, oCmdUpd);
+		displayBPM(oMoteur.getBpm());
 	}
 
 	public void displayBPM(int piValue) {
 		this.poDisplay.setText(String.valueOf(piValue));
-		ctlBip();
 	}
 	
 	public void ctlBip() {
@@ -76,7 +89,7 @@ public class ControllerImpl implements Controller{
 	}
 	
 	private void displayDelay(final String psLight) {
-		final Timer timer = new Timer();
+		Timer timer = new Timer();
 		TimerTask switchOff = new TimerTask()
 		{
 			@Override
@@ -89,15 +102,17 @@ public class ControllerImpl implements Controller{
 				}
 			}	
 		};
-		timer.schedule(switchOff, 200);
+		timer.schedule(switchOff, 100);
 	}
 
 	public void displayBip() {
+		System.out.println("Bip ! ");
 		moLightBPM.selectedProperty().set(true);
 		displayDelay(LIGHT_BPM);
 	}
 	
 	public void displayMesure() {
+		System.out.println("Mesure");
 		moLightMesure.selectedProperty().set(true);
 		displayDelay(LIGHT_MESURE);
 	}

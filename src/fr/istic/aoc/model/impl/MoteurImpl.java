@@ -2,6 +2,8 @@ package fr.istic.aoc.model.impl;
 
 import fr.istic.aoc.model.Moteur;
 import fr.istic.aoc.command.Command;
+import fr.istic.aoc.command.impl.StartClock;
+import fr.istic.aoc.command.impl.StopClock;
 import fr.istic.aoc.command.impl.UpdateBPM;
 import fr.istic.aoc.enumeration.Evenement;
 
@@ -45,6 +47,12 @@ public class MoteurImpl implements Moteur{
         	UpdateBPM updateBpm = (UpdateBPM) ctlCmd;
         	updateBpm.setBpm(this.bpm);
         	updateBpm.execute();
+        } else if(evt.equals(Evenement.StartClock)){
+        	StartClock start = (StartClock) ctlCmd;
+        	start.execute();
+        } else if(evt.equals(Evenement.StopClock)){
+        	StopClock stop = (StopClock) ctlCmd;
+        	stop.execute();
         }
     }
     

@@ -1,6 +1,7 @@
 package fr.istic.aoc.command.impl;
 
 import fr.istic.aoc.command.Command;
+import fr.istic.aoc.controller.Controller;
 import fr.istic.aoc.model.Horloge;
 import fr.istic.aoc.model.impl.HorlogeImpl;
 
@@ -15,10 +16,33 @@ public class StartClock implements Command {
 	 * 
 	 */
 	public int miDelay = 0;
+	
+	public Controller moCtrl;
+	
+	public StartClock(Controller poCtrl) {
+		this.moCtrl = poCtrl;
+	}
+
+	public int getMiInitBPM() {
+		return miInitBPM;
+	}
+
+	public void setMiInitBPM(int miInitBPM) {
+		this.miInitBPM = miInitBPM;
+	}
+
+	public int getMiDelay() {
+		return miDelay;
+	}
+
+	public void setMiDelay(int miDelay) {
+		this.miDelay = miDelay;
+	}
 
 	public void execute() {
 		HorlogeImpl oHorloge = new HorlogeImpl();
-		oHorloge.start(miInitBPM/60);
+		long fInit = (long) (((float) 60/miInitBPM) * 1000);
+		oHorloge.start(fInit, moCtrl);
 	}
 
 }

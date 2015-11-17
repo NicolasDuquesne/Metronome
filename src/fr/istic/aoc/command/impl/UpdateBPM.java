@@ -1,6 +1,7 @@
 package fr.istic.aoc.command.impl;
 
 import fr.istic.aoc.command.Command;
+import fr.istic.aoc.controller.Controller;
 import fr.istic.aoc.model.Horloge;
 
 /**
@@ -10,6 +11,11 @@ public class UpdateBPM implements Command{
 
 	private Horloge horloge;
 	private int bpm;
+	private Controller moCtrl;
+	
+	public UpdateBPM (Controller poCtrl) {
+		this.moCtrl = poCtrl;
+	}
 
 	 /**
 	 * @return the bpm
@@ -28,11 +34,11 @@ public class UpdateBPM implements Command{
 	
 	public void execute() {
 		//calcul le temps par rapport au BPM
-		float timeBPM;
-		timeBPM = 60/this.bpm;
-		
+		long timeBPM;
+		timeBPM = (long) (((float) 60/this.bpm) * 1000);
+		System.out.println("timeBPM : " + timeBPM);
 		//Appel méthode start de l'horloge pour executer les bips par rapport au temps
-		horloge.start(timeBPM);
+		horloge.start(timeBPM, moCtrl);
 	}
 
 }

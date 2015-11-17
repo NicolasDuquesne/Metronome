@@ -1,18 +1,19 @@
 package fr.istic.aoc.command.impl;
 
+import fr.istic.aoc.command.Command;
 import fr.istic.aoc.controller.Controller;
-import fr.istic.aoc.model.Horloge;
 
-public class SendBip {
+public class SendBip implements Command{
 	
 	private Controller ctl;
-	private int measure;
 	
-	public int getMeasure() {
-		return measure;
+	public void execute() {
+		//Appel la méthode du Controller qui vérifiera si on affiche la led BPM ou les deux
+		ctl.ctlBip();
 	}
 	
-	public void setMeasure(int measure) {
-		this.measure = measure;
+	public Runnable run(){
+		this.execute();
+		return null;
 	}
 }

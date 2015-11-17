@@ -16,6 +16,8 @@ public interface Controller {
 	
 	void displayBPM(int piValue);
 	
+	void ctlBip();
+	
 	void displayBip();
 	
 	void displayMesure();

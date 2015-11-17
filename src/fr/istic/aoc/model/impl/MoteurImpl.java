@@ -1,5 +1,6 @@
 package fr.istic.aoc.model.impl;
 
+import fr.istic.aoc.model.Horloge;
 import fr.istic.aoc.model.Moteur;
 import fr.istic.aoc.command.Command;
 import fr.istic.aoc.command.impl.StartClock;
@@ -11,7 +12,7 @@ public class MoteurImpl implements Moteur{
 	
 	private int bpm;
 	private int measure;
-	
+	private Horloge moHorloge = new HorlogeImpl();
 	 /**
 	 * @return the bpm
 	 */
@@ -39,6 +40,20 @@ public class MoteurImpl implements Moteur{
 	 */
 	public void setMeasure(int measure) {
 		this.measure = measure;
+	}
+
+	/**
+	 * @return the moHorloge
+	 */
+	public Horloge getMoHorloge() {
+		return moHorloge;
+	}
+
+	/**
+	 * @param moHorloge the moHorloge to set
+	 */
+	public void setMoHorloge(Horloge moHorloge) {
+		this.moHorloge = moHorloge;
 	}
 
 	// Méthode lançant la bonne commande execute() appelé par le controller

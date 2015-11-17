@@ -3,13 +3,13 @@ package fr.istic.aoc.command.impl;
 import fr.istic.aoc.command.Command;
 import fr.istic.aoc.controller.Controller;
 import fr.istic.aoc.model.Horloge;
+import fr.istic.aoc.model.impl.HorlogeImpl;
 
 /**
  * Implémente la commande UpdateBPM
  */
 public class UpdateBPM implements Command{
 
-	private Horloge horloge;
 	private int bpm;
 	private Controller moCtrl;
 	
@@ -36,9 +36,9 @@ public class UpdateBPM implements Command{
 		//calcul le temps par rapport au BPM
 		long timeBPM;
 		timeBPM = (long) (((float) 60/this.bpm) * 1000);
-		System.out.println("timeBPM : " + timeBPM);
 		//Appel méthode start de l'horloge pour executer les bips par rapport au temps
-		horloge.start(timeBPM, moCtrl);
+		moCtrl.getMoMoteur().getMoHorloge().stop();
+		moCtrl.getMoMoteur().getMoHorloge().start(timeBPM, moCtrl);
 	}
 
 }

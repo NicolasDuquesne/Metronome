@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 import fr.istic.aoc.command.impl.SendBip;
@@ -13,6 +14,7 @@ import fr.istic.aoc.model.Horloge;
 public class HorlogeImpl implements Horloge{
 	
 	private static ScheduledExecutorService s = Executors.newScheduledThreadPool(1);
+	private static ScheduledFuture<?> moSchedules;
 	
 	SendBip sendBip = new SendBip();
 	
@@ -31,11 +33,12 @@ public class HorlogeImpl implements Horloge{
 		
     	//indiquer la commande qui mettra à jour la vue (clignotement de la led 1)
 		//voir pour utiliser les lambda expression
-		s.scheduleAtFixedRate(clock, 0L, timeBPM, TimeUnit.MILLISECONDS);
+		this.moSchedules = s.scheduleAtFixedRate(clock, 0L, timeBPM, TimeUnit.MILLISECONDS);
 	}
-
-	//liste des méthodes faisant les actions de tics et mesures
 	
-	// ScheduleExecutorService s = Executors.newScheduledThreadPool(1)
-	// s.scheduleAtFixedRate(cmd::execute);
+	public void stop() {
+		if (this.moSchedules != null && !this.moSchedules.isCancelled()){
+			this.moSchedules.cancel(true);
+		}
+	}
 }

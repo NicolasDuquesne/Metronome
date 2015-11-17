@@ -15,4 +15,8 @@ public interface Moteur {
 	
     public void setCmd(Evenement evt, Command ctlCmd);
     
+    Horloge getMoHorloge();
+
+	void setMoHorloge(Horloge moHorloge);
+    
 }

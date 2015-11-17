@@ -1,5 +1,7 @@
 package fr.istic.aoc.controller;
 
+import fr.istic.aoc.controller.impl.ControllerImpl;
+import fr.istic.aoc.model.Moteur;
 import javafx.event.ActionEvent;
 
 public interface Controller {
@@ -21,4 +23,9 @@ public interface Controller {
 	void displayBip();
 	
 	void displayMesure();
+	
+	Moteur getMoMoteur();
+
+	void setMoMoteur(Moteur moMoteur);
+	
 }

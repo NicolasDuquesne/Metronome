@@ -9,6 +9,7 @@ import fr.istic.aoc.command.impl.StopClock;
 import fr.istic.aoc.command.impl.UpdateBPM;
 import fr.istic.aoc.controller.*;
 import fr.istic.aoc.enumeration.Evenement;
+import fr.istic.aoc.model.Moteur;
 import fr.istic.aoc.model.impl.MoteurImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +22,8 @@ public class ControllerImpl implements Controller{
 	private static final String LIGHT_BPM = "LIGHT_BPM";
 	private static final String LIGHT_MESURE = "LIGHT_MESURE";
 	private static final int DEFAULT_BPM = 120;
+	
+	private static Moteur moMoteur = new MoteurImpl();
 	
 	@FXML
 	private Slider poSliderBPM;
@@ -55,24 +58,21 @@ public class ControllerImpl implements Controller{
 	}
 	
 	public void onClickStart(ActionEvent poEvent) {
-		MoteurImpl oMoteur = new MoteurImpl();
 		StartClock oCmdStart = new StartClock(this);
 		oCmdStart.setMiInitBPM(DEFAULT_BPM);
-		oMoteur.setCmd(Evenement.StartClock, oCmdStart);
+		moMoteur.setCmd(Evenement.StartClock, oCmdStart);
 	}
 	
 	public void onClickStop(ActionEvent poEvent) {
-		MoteurImpl oMoteur = new MoteurImpl();
-		StopClock oCmdStop = new StopClock();
-		oMoteur.setCmd(Evenement.StopClock, oCmdStop);
+		StopClock oCmdStop = new StopClock(this);
+		moMoteur.setCmd(Evenement.StopClock, oCmdStop);
 	}
 	
 	public void onModifyBPM() {
-		MoteurImpl oMoteur = new MoteurImpl();
 		UpdateBPM oCmdUpd = new UpdateBPM(this);
-		oMoteur.setBpm(this.poSliderBPM.valueProperty().intValue());
-		oMoteur.setCmd(Evenement.UpdateBPM, oCmdUpd);
-		displayBPM(oMoteur.getBpm());
+		moMoteur.setBpm(this.poSliderBPM.valueProperty().intValue());
+		moMoteur.setCmd(Evenement.UpdateBPM, oCmdUpd);
+		displayBPM(moMoteur.getBpm());
 	}
 
 	public void displayBPM(int piValue) {
@@ -106,15 +106,27 @@ public class ControllerImpl implements Controller{
 	}
 
 	public void displayBip() {
-		System.out.println("Bip ! ");
 		moLightBPM.selectedProperty().set(true);
 		displayDelay(LIGHT_BPM);
 	}
 	
 	public void displayMesure() {
-		System.out.println("Mesure");
 		moLightMesure.selectedProperty().set(true);
 		displayDelay(LIGHT_MESURE);
+	}
+
+	/**
+	 * @return the moMoteur
+	 */
+	public Moteur getMoMoteur() {
+		return moMoteur;
+	}
+
+	/**
+	 * @param moMoteur the moMoteur to set
+	 */
+	public void setMoMoteur(Moteur moMoteur) {
+		ControllerImpl.moMoteur = moMoteur;
 	}
 	
 }

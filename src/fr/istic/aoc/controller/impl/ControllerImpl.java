@@ -41,6 +41,10 @@ public class ControllerImpl implements Controller{
 	
 	private int miMesure = 2;
 	
+	private int Measure;
+	private int BPM;
+	private int iCptBPM = 0;
+	
 	public ControllerImpl() {
 		
 	}
@@ -59,9 +63,14 @@ public class ControllerImpl implements Controller{
 	
 	public void onClickStart(ActionEvent poEvent) {
 		StartClock oCmdStart = new StartClock(this);
-		oCmdStart.setMiInitBPM(DEFAULT_BPM);
+		oCmdStart.setMiInitBPM(moMoteur.getBpm());
 		moMoteur.setCmd(Evenement.StartClock, oCmdStart);
-		displayBPM(DEFAULT_BPM);
+		if(moMoteur.getBpm() < 20){
+			displayBPM(DEFAULT_BPM);
+		}
+		else{
+			displayBPM(moMoteur.getBpm());
+		}
 	}
 	
 	public void onClickStop(ActionEvent poEvent) {
@@ -83,7 +92,7 @@ public class ControllerImpl implements Controller{
 	public void ctlBip() {
 		miCountBip++;
 		displayBip();
-		if (miCountBip == miMesure) {
+		if (miCountBip >= miMesure) {
 			displayMesure();
 			miCountBip = 0;
 		}

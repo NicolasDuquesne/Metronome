@@ -10,7 +10,7 @@ import fr.istic.aoc.enumeration.Evenement;
 
 public class MoteurImpl implements Moteur{
 	
-	private int bpm;
+	private int bpm = 20;
 	private int measure;
 	private Horloge moHorloge = new HorlogeImpl();
 	 /**

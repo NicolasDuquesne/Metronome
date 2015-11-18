@@ -4,5 +4,5 @@ import fr.istic.aoc.controller.Controller;
 
 public interface Horloge {
 	void start(long timeBPM, Controller poCtrl);
-	void stop();
+	boolean stop();
 }

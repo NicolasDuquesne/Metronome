@@ -37,9 +37,12 @@ public class HorlogeImpl implements Horloge{
 		}
 	}
 	
-	public void stop() {
+	public boolean stop() {
+		boolean bStopped = false;
 		if (this.moSchedules != null && !this.moSchedules.isCancelled()){
 			this.moSchedules.cancel(true);
+			bStopped = true;
 		}
+		return bStopped;
 	}
 }

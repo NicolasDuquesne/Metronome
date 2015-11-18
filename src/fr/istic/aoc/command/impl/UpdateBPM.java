@@ -37,8 +37,9 @@ public class UpdateBPM implements Command{
 		long timeBPM;
 		timeBPM = (long) (((float) 60/this.bpm) * 1000);
 		//Appel méthode start de l'horloge pour executer les bips par rapport au temps
-		moCtrl.getMoMoteur().getMoHorloge().stop();
-		moCtrl.getMoMoteur().getMoHorloge().start(timeBPM, moCtrl);
+		if(moCtrl.getMoMoteur().getMoHorloge().stop() == true){
+			moCtrl.getMoMoteur().getMoHorloge().start(timeBPM, moCtrl);
+		}
 	}
 
 }

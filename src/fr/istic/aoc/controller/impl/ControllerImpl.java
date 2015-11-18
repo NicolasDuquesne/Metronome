@@ -79,10 +79,12 @@ public class ControllerImpl implements Controller{
 	}
 	
 	public void onModifyBPM() {
-		UpdateBPM oCmdUpd = new UpdateBPM(this);
-		moMoteur.setBpm(this.poSliderBPM.valueProperty().intValue());
-		moMoteur.setCmd(Evenement.UpdateBPM, oCmdUpd);
-		displayBPM(moMoteur.getBpm());
+		if (moMoteur.getBpm() != this.poSliderBPM.valueProperty().intValue()) {
+			UpdateBPM oCmdUpd = new UpdateBPM(this);
+			moMoteur.setBpm(this.poSliderBPM.valueProperty().intValue());
+			moMoteur.setCmd(Evenement.UpdateBPM, oCmdUpd);
+			displayBPM(moMoteur.getBpm());
+		}
 	}
 
 	public void displayBPM(int piValue) {

@@ -37,7 +37,7 @@
          <children>
             <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <Slider fx:id="poSliderBPM" max="300.0" min="20.0" onMouseReleased="#onModifyBPM" onScroll="#onModifyBPM" orientation="VERTICAL" prefHeight="170.0" prefWidth="42.0" showTickLabels="true" value="20.0">
+                  <Slider fx:id="poSliderBPM" max="300.0" min="20.0" onKeyPressed="#onModifyBPM" onMouseReleased="#onModifyBPM" onScroll="#onModifyBPM" orientation="VERTICAL" prefHeight="170.0" prefWidth="42.0" showTickLabels="true" value="20.0">
                      <FlowPane.margin>
                         <Insets left="70.0" />
                      </FlowPane.margin>
@@ -56,10 +56,16 @@
                   <Button fx:id="BTN_STOP" mnemonicParsing="false" onAction="#onClickStop" text="STOP" translateX="-50.0" />
               </buttons>
             </ButtonBar>
-            <TextArea fx:id="poDisplay" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: WHITE; -fx-border-color: GREY;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
+            <TextArea fx:id="poDisplay" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWidth="250.0" style="-fx-background-color: WHITE; -fx-border-color: GREY;" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <font>
+                  <Font name="KacstDigital" size="36.0" />
+               </font>
             </TextArea>
             <Ellipse fx:id="moLightBPM" fill="LIGHTGRAY" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="TOP">
                <GridPane.margin>

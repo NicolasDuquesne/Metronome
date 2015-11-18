@@ -21,7 +21,7 @@ public class ControllerImpl implements Controller{
 	
 	private static final String LIGHT_BPM = "LIGHT_BPM";
 	private static final String LIGHT_MESURE = "LIGHT_MESURE";
-	private static final int DEFAULT_BPM = 120;
+	private static final int DEFAULT_BPM = 20;
 	
 	private static Moteur moMoteur = new MoteurImpl();
 	
@@ -61,6 +61,7 @@ public class ControllerImpl implements Controller{
 		StartClock oCmdStart = new StartClock(this);
 		oCmdStart.setMiInitBPM(DEFAULT_BPM);
 		moMoteur.setCmd(Evenement.StartClock, oCmdStart);
+		displayBPM(DEFAULT_BPM);
 	}
 	
 	public void onClickStop(ActionEvent poEvent) {

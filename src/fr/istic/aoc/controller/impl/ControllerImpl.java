@@ -1,6 +1,5 @@
 package fr.istic.aoc.controller.impl;
 
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -13,9 +12,10 @@ import fr.istic.aoc.model.Moteur;
 import fr.istic.aoc.model.impl.MoteurImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Ellipse;
 
 public class ControllerImpl implements Controller{
 	
@@ -32,10 +32,10 @@ public class ControllerImpl implements Controller{
 	private TextArea poDisplay;
 	
 	@FXML
-	private RadioButton moLightBPM;
+	private Ellipse moLightBPM;
 	
 	@FXML
-	private RadioButton moLightMesure;
+	private Ellipse moLightMesure;
 	
 	private int miCountBip = 0;
 	
@@ -106,9 +106,9 @@ public class ControllerImpl implements Controller{
 			public void run() 
 			{
 				if (LIGHT_BPM.equals(psLight)) {
-					moLightBPM.selectedProperty().set(false);
+					moLightBPM.setFill(Color.LIGHTGRAY);
 				} else if (LIGHT_MESURE.equals(psLight)) {
-					moLightMesure.selectedProperty().set(false);
+					moLightMesure.setFill(Color.LIGHTGRAY);
 				}
 			}	
 		};
@@ -116,12 +116,12 @@ public class ControllerImpl implements Controller{
 	}
 
 	public void displayBip() {
-		moLightBPM.selectedProperty().set(true);
+		moLightBPM.setFill(Color.BLUE);
 		displayDelay(LIGHT_BPM);
 	}
 	
 	public void displayMesure() {
-		moLightMesure.selectedProperty().set(true);
+		moLightMesure.setFill(Color.GREEN);
 		displayDelay(LIGHT_MESURE);
 	}
 
